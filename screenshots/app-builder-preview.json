@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Roshoi Partner",
+      "hasCanvas": false,
+      "bodyTextLen": 357,
+      "bodyTextHash": "4cc5bfcc3709af90641342a72a8c01e65598fd7cac7f65be0d4cebc4c9819383",
+      "bodyTextPrefix": "Roshoi Partner Sign in RESTAURANT OPERATING SYSTEM Run the kitch",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Roshoi Partner",
+      "hasCanvas": false,
+      "bodyTextLen": 357,
+      "bodyTextHash": "4cc5bfcc3709af90641342a72a8c01e65598fd7cac7f65be0d4cebc4c9819383",
+      "bodyTextPrefix": "Roshoi Partner Sign in RESTAURANT OPERATING SYSTEM Run the kitch",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

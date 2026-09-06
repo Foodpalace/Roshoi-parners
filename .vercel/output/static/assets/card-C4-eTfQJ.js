@@ -1,0 +1,1 @@
+import{T as e}from"./index-34vKPtrN.js";import{r as t}from"./mark-DxyKmoNx.js";var n=e();function r({className:e,...r}){return(0,n.jsx)(`div`,{className:t(`rounded-[24px] border border-line bg-surface p-4 shadow-soft`,e),...r})}export{r as t};

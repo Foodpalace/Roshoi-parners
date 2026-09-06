@@ -1,0 +1,24 @@
+export function RoshoiMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      className={className}
+      aria-hidden="true"
+      fill="none"
+    >
+      <rect width="32" height="32" rx="8" fill="currentColor" />
+      <path
+        d="M8 20c0-3 2.4-6.5 8-6.5S24 17 24 20"
+        stroke="#FFFDF8"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10 20.5h12c.4 3.2-2.6 5.5-6 5.5s-6.4-2.3-6-5.5Z"
+        fill="#FFFDF8"
+      />
+      <path d="M14 9.5c0 2-.8 3-1.6 3.5" stroke="#FFFDF8" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M18 8.5c0 2.2-.7 3.4-1.5 4" stroke="#FFFDF8" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
