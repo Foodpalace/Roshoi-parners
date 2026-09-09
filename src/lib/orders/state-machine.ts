@@ -22,7 +22,21 @@ export const TERMINAL_STATES: readonly OrderState[] = [
   "REJECTED",
   "CANCELLED",
   "REFUNDED",
+  "PARTIAL_REFUND",
   "FAILED_PAYMENT",
+  "DELIVERY_FAILED",
+];
+
+/** Shared ladder with customer app after place. */
+export const MARKETPLACE_TRACK: readonly OrderState[] = [
+  "PLACED",
+  "ACCEPTED",
+  "PREPARING",
+  "READY",
+  "RIDER_ASSIGNED",
+  "PICKED_UP",
+  "ON_THE_WAY",
+  "DELIVERED",
 ];
 
 export const REJECT_REASONS = [
@@ -139,6 +153,10 @@ export function isRejectReason(value: string): value is RejectReason {
 
 export function isTerminal(state: OrderState): boolean {
   return TERMINAL_STATES.includes(state);
+}
+
+export function trackIndex(state: OrderState): number {
+  return MARKETPLACE_TRACK.indexOf(state);
 }
 
 export const RESTAURANT_NEXT: Partial<Record<OrderState, OrderState>> = {

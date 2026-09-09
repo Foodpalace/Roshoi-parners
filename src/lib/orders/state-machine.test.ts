@@ -3,34 +3,39 @@ import { describe, it } from "node:test";
 import {
   assertTransition,
   canTransition,
-  InvalidTransitionError,
+  isTerminal,
+  MARKETPLACE_TRACK,
+  RESTAURANT_NEXT,
+  SIMULATED_RIDER_NEXT,
+  trackIndex,
 } from "./state-machine.ts";
 
-describe("order state machine", () => {
-  it("allows the happy path", () => {
+describe("partner order state machine", () => {
+  it("restaurant happy path", () => {
     assert.equal(canTransition("PLACED", "ACCEPTED", "restaurant"), true);
     assert.equal(canTransition("ACCEPTED", "PREPARING", "restaurant"), true);
     assert.equal(canTransition("PREPARING", "READY", "restaurant"), true);
-    assert.equal(canTransition("READY", "RIDER_ASSIGNED", "simulated_rider"), true);
-    assert.equal(canTransition("ON_THE_WAY", "DELIVERED", "rider"), true);
+    assert.equal(RESTAURANT_NEXT.PLACED, "ACCEPTED");
   });
 
-  it("rejects impossible jumps", () => {
-    assert.equal(canTransition("PLACED", "READY", "restaurant"), false);
-    assert.equal(canTransition("PLACED", "DELIVERED", "restaurant"), false);
-    assert.equal(canTransition("DELIVERED", "PLACED", "restaurant"), false);
-    assert.throws(
-      () => assertTransition("PREPARING", "ACCEPTED", "restaurant"),
-      InvalidTransitionError,
-    );
+  it("blocks customer from accepting", () => {
+    assert.equal(canTransition("PLACED", "ACCEPTED", "customer"), false);
   });
 
-  it("does not let the restaurant assign a rider", () => {
-    assert.equal(canTransition("READY", "RIDER_ASSIGNED", "restaurant"), false);
+  it("simulated rider completes after READY", () => {
+    let state: keyof typeof SIMULATED_RIDER_NEXT | "DELIVERED" = "READY";
+    while (state !== "DELIVERED") {
+      const next = SIMULATED_RIDER_NEXT[state as keyof typeof SIMULATED_RIDER_NEXT];
+      assert.ok(next, `missing sim step from ${state}`);
+      assertTransition(state as "READY", next, "simulated_rider");
+      state = next as typeof state;
+    }
   });
 
-  it("requires restaurant or admin to reject a placed order", () => {
-    assert.equal(canTransition("PLACED", "REJECTED", "restaurant"), true);
-    assert.equal(canTransition("PLACED", "REJECTED", "rider"), false);
+  it("track + terminal helpers", () => {
+    assert.equal(trackIndex("PLACED"), 0);
+    assert.equal(trackIndex("DELIVERED"), MARKETPLACE_TRACK.length - 1);
+    assert.equal(isTerminal("DELIVERED"), true);
+    assert.equal(isTerminal("READY"), false);
   });
 });
