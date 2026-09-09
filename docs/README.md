@@ -1,4 +1,4 @@
-# Roshoi Partner
+# Roshoi Partners
 
 Restaurant operating system for the Roshoi marketplace (Window 2).
 
